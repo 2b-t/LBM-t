@@ -20,7 +20,7 @@
 namespace lbt {
   namespace lattice {
 
-    /**\class  lattice::D2Q9P10
+    /**\class  D2Q9P10
      * \brief  Class for D2Q9 lattice with padding to 10
      *
      * \note   "Lattice BGK models for Navier-Stokes equation"
@@ -74,7 +74,7 @@ namespace lbt {
     template<typename T> using D2Q9 = D2Q9P10<T>;
 
 
-    /**\class  lattice::D2Q9P12
+    /**\class  D2Q9P12
      * \brief  Class for D2Q9 lattice with padding to 12
      *
      * \note   "Lattice BGK models for Navier-Stokes equation"

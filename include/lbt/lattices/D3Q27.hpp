@@ -20,7 +20,7 @@
 namespace lbt {
   namespace lattice {
 
-    /**\class  lattice::D3Q27P28
+    /**\class  D3Q27P28
      * \brief  Class for D3Q27 lattice with padding to 28
      *
      * \note   "Lattice BGK models for Navier-Stokes equation"
@@ -91,7 +91,7 @@ namespace lbt {
     /// Alias default lattice
     template<typename T> using D3Q27 = D3Q27P28<T>;
 
-    /**\class  lattice::D3Q27PC
+    /**\class  D3Q27PC
      * \brief  Class for D3Q27 lattice with padding to match a full cache line
      *
      * \note   "Lattice BGK models for Navier-Stokes equation"

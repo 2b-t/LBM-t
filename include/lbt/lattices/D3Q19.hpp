@@ -20,7 +20,7 @@
 namespace lbt {
   namespace lattice {
 
-    /**\class  lattice::D3Q19P20
+    /**\class  D3Q19P20
      * \brief  Class for D3Q19 lattice with padding to 20
      *
      * \note   "Lattice BGK models for Navier-Stokes equation"
