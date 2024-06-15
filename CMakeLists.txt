@@ -8,7 +8,6 @@ if(CMAKE_COMPILER_IS_GNUCC)
     message(STATUS "Building with coverage reporting for GCC/Clang.")
     add_compile_options(--coverage -O0)
     link_libraries(--coverage)
-    #set(CMAKE_CXX_OUTPUT_EXTENSION_REPLACE ON)
   else ()
     set(CMAKE_CXX_FLAGS_RELEASE "-O3")
   endif()
@@ -17,7 +16,8 @@ else()
 endif()
 
 set(CMAKE_BUILD_TYPE Release)
-set(CMAKE_CXX_STANDARD 17) # The vast majority of code is written for C++17 but certain tests require C++20
+# The vast majority of code is written for C++17 but certain tests require C++20
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 # Libraries: VTK, nlohmann_json, OpenMP (optional)
