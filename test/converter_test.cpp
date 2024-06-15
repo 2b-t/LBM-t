@@ -6,8 +6,8 @@
 
 #include <gtest/gtest.h>
 
-#include "lbt/unit/literals.hpp"
-#include "lbt/unit/units.hpp"
+#include "lbt/units/literals.hpp"
+#include "lbt/units/units.hpp"
 #include "lbt/converter.hpp"
 
 

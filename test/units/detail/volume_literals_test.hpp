@@ -1,0 +1,44 @@
+/**
+ * \file     volume_literals_test.hpp
+ * \mainpage Contains unit-tests for literals for a volume
+ * \author   Tobit Flatscher (github.com/2b-t)
+*/
+
+#ifndef LBT__UNITS__VOLUME_LITERALS_TEST
+#define LBT__UNITS__VOLUME_LITERALS_TEST
+#pragma once
+
+#include <utility>
+
+#include <gtest/gtest.h>
+
+#include "lbt/units/detail/volume.hpp"
+#include "lbt/units/detail/volume_literals.hpp"
+#include "unit_literals_helper.hpp"
+
+
+namespace lbt {
+  namespace literals {
+    namespace test {
+      using namespace lbt::literals;
+
+      using VolumeLiteralsHelper = UnitLiteralsHelper<lbt::unit::Volume>;
+
+      TEST_P(VolumeLiteralsHelper, unitConversion) {
+        auto const [volume, expected_result] = GetParam();
+        EXPECT_DOUBLE_EQ(volume.get(), expected_result);
+      }
+
+      INSTANTIATE_TEST_SUITE_P(VolumeLiteralsTest, VolumeLiteralsHelper, ::testing::Values(
+          std::make_pair(0.3_km3, 3.0e+8L),
+          std::make_pair(8.6_m3,  8.6L),
+          std::make_pair(1.2_cm3, 1.2e-6L),
+          std::make_pair(9.8_mm3, 9.8e-9L)
+        )
+      );
+
+    }
+  }
+}
+
+#endif // LBT__UNITS__VOLUME_LITERALS_TEST

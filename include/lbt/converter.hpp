@@ -4,11 +4,11 @@
  * \author   Tobit Flatscher (github.com/2b-t)
 */
 
-#ifndef LBT_CONVERTER
-#define LBT_CONVERTER
+#ifndef LBT__CONVERTER
+#define LBT__CONVERTER
 #pragma once
 
-#include "lbt/unit/units.hpp"
+#include "lbt/units/units.hpp"
 
 
 namespace lbt {
@@ -138,4 +138,4 @@ namespace lbt {
 
 }
 
-#endif // LBT_CONVERTER
+#endif // LBT__CONVERTER

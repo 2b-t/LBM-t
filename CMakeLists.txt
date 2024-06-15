@@ -46,10 +46,10 @@ else()
 endif()
 
 add_library(lbt_obj OBJECT
-  src/general/disclaimer.cpp
-  src/general/openmp_manager.cpp
-  src/general/timer.cpp
-  src/general/vtk_utilities.cpp 
+  src/common/disclaimer.cpp
+  src/common/openmp_manager.cpp
+  src/common/timer.cpp
+  src/common/vtk_utilities.cpp 
   src/geometry/vtk_import.cpp
 )
 target_include_directories(lbt_obj PUBLIC
@@ -81,33 +81,33 @@ if (NOT GTest_FOUND)
   set(LBT_TEST_LIBRARIES ${LBT_LIBRARIES} gtest pthread)
 
   add_library(lbt_test_obj OBJECT
-    test/constexpr_math/constexpr_math_test.cpp
-    test/continuum/simple_continuum_test.cpp
-    test/continuum/vtk_continuum_test.cpp
-    test/general/disclaimer_test.cpp
-    test/general/openmp_manager_test.cpp
-    test/general/output_utilities_test.cpp
-    test/general/stream_manager_test.cpp
-    test/general/timer_test.cpp
-    test/general/tuple_utilities_test.cpp
-    test/general/type_definitions_test.cpp
-    test/general/vtk_utilities_test.cpp
+    test/common/disclaimer_test.cpp
+    test/common/openmp_manager_test.cpp
+    test/common/output_utilities_test.cpp
+    test/common/stream_manager_test.cpp
+    test/common/timer_test.cpp
+    test/common/tuple_utilities_test.cpp
+    test/common/type_definitions_test.cpp
+    test/common/vtk_utilities_test.cpp
+    test/continuums/simple_continuum_test.cpp
+    test/continuums/vtk_continuum_test.cpp
     test/geometry/vtk_import_test.cpp
-    test/lattice/lattice_test.cpp
-    test/material/materials_test.cpp
-    test/population/aa_population_test.cpp
-    test/population/ab_population_test.cpp
-    test/population/boundary/guo_test.cpp
-    test/population/boundary/normal_test.cpp
-    test/population/boundary/orientation_test.cpp
-    test/population/indexing/aa_pattern_test.cpp
-    test/population/indexing/indexing_test.cpp
-    test/testing_utilities/testing_utilities_test.cpp
-    test/unit/characteristic_numbers_test.cpp
-    test/unit/literals_test.cpp
-    test/unit/units_test.cpp
+    test/lattices/lattices_test.cpp
+    test/materials/materials_test.cpp
+    test/math/math_test.cpp
+    test/populations/aa_population_test.cpp
+    test/populations/ab_population_test.cpp
+    test/populations/boundaries/guo_test.cpp
+    test/populations/boundaries/normal_test.cpp
+    test/populations/boundaries/orientation_test.cpp
+    test/populations/indexing/aa_pattern_test.cpp
+    test/populations/indexing/indexing_test.cpp
+    test/simulation/simulation_test.cpp
+    test/test_utilities/test_utilities_test.cpp
+    test/units/characteristic_numbers_test.cpp
+    test/units/literals_test.cpp
+    test/units/units_test.cpp
     test/converter_test.cpp
-    test/simulation_test.cpp
   )
   target_include_directories(lbt_test_obj PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

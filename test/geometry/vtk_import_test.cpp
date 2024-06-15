@@ -4,7 +4,7 @@
  * \author   Tobit Flatscher (github.com/2b-t)
 */
 
-#include "lbt/general/use_vtk.hpp"
+#include "lbt/common/use_vtk.hpp"
 
 #ifdef LBT_USE_VTK
   #include <type_traits>

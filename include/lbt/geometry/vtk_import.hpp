@@ -5,11 +5,11 @@
  * \author   Tobit Flatscher (github.com/2b-t)
 */
 
-#ifndef LBT_VTK_IMPORT
-#define LBT_VTK_IMPORT
+#ifndef LBT__GEOMETRY__VTK_IMPORT
+#define LBT__GEOMETRY__VTK_IMPORT
 #pragma once
 
-#include "lbt/general/use_vtk.hpp"
+#include "lbt/common/use_vtk.hpp"
 
 #ifdef LBT_USE_VTK
   #include <array>
@@ -23,7 +23,7 @@
   #include <vtkPolyData.h>
   #include <vtkSmartPointer.h>
 
-  #include "lbt/general/vtk_utilities.hpp"
+  #include "lbt/common/vtk_utilities.hpp"
 
 
   namespace lbt {
@@ -335,4 +335,4 @@
   }
 #endif // LBT_USE_VTK
 
-#endif // LBT_VTK_IMPORT
+#endif // LBT__GEOMETRY__VTK_IMPORT

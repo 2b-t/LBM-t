@@ -10,14 +10,14 @@
 #include <iostream>
 #include <memory>
 
-#include "lbt/continuum/continuum.hpp"
-#include "lbt/general/openmp_manager.hpp"
-#include "lbt/lattice/lattices.hpp"
-#include "lbt/material/materials.hpp"
-#include "lbt/population/collision_operators.hpp"
-#include "lbt/population/population.hpp"
-#include "lbt/unit/characteristic_numbers.hpp"
-#include "lbt/unit/literals.hpp"
+#include "lbt/common/openmp_manager.hpp"
+#include "lbt/continuums/continuum.hpp"
+#include "lbt/lattices/lattices.hpp"
+#include "lbt/materials/materials.hpp"
+#include "lbt/populations/collision_operators.hpp"
+#include "lbt/populations/population.hpp"
+#include "lbt/units/characteristic_numbers.hpp"
+#include "lbt/units/literals.hpp"
 #include "lbt/converter.hpp"
 
 

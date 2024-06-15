@@ -1,6 +1,6 @@
 #include "lbt/geometry/vtk_import.hpp"
 
-#include "lbt/general/use_vtk.hpp"
+#include "lbt/common/use_vtk.hpp"
 
 #ifdef LBT_USE_VTK
   #include <algorithm>
@@ -46,7 +46,7 @@
   #include <vtkTransformPolyDataFilter.h>
   #include <vtkXMLPolyDataReader.h>
 
-  #include "lbt/general/vtk_utilities.hpp"
+  #include "lbt/common/vtk_utilities.hpp"
 
 
   namespace lbt {
