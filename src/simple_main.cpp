@@ -36,6 +36,7 @@ int main(int argc, char* argv[]) {
 
   // Solver settings: Floating type, lattice and collision operator
   constexpr auto simulation_time {3.0_min};
+  constexpr auto save_time_step {simulation_time/100.0};
   using T = double;
   using Lattice = lbt::lattice::D2Q9<T>;
   using CollisionOperator = lbt::collision::Bgk<Lattice>;
@@ -46,35 +47,47 @@ int main(int argc, char* argv[]) {
   constexpr std::int32_t NY {100};
   constexpr std::int32_t NZ {100};
   auto const output_path {std::filesystem::current_path()};
-  constexpr lbt::Converter unit_converter {length, static_cast<long double>(NX), velocity, lbm_velocity, density, lbm_density};
 
-  // Multi-threading
+  constexpr lbt::Converter unit_converter {
+    length, static_cast<long double>(NX),
+    velocity, lbm_velocity,
+    density, lbm_density
+  };
+
   auto& omp_manager = lbt::OpenMpManager::getInstance();
   omp_manager.setThreadsNum(lbt::OpenMpManager::getThreadsMax());
 
   // Geometry and boundary conditions
-  // TODO(tobit): Add boundary conditions
+  // std::vector<BoundaryCondition> boundary_conditions {};
+  // Append boundary conditions, allow specifying range for boundary condition easily
 
   // Continuum, population and collision operator
   auto continuum {std::make_shared<lbt::Continuum<T>>(NX, NY, NZ, output_path)};
   auto population {std::make_shared<lbt::Population<Lattice>>(NX, NY, NZ)};
   // auto CollisionOperator collision_operator {continuum, population, reynolds_number, lbm_velocity, lbm_length};
-  // collision_operator.initialize<lbt::Timestep::Even>({u, v, w}, lbm_density);
+  // Writer class for writing results to file
+
+  // collision_operator.initializeUniform<lbt::Timestep::Even>({u, v, w}, lbm_density);
+  // collision_operator.initializeFromContinuum<lbt::Timestep::Even>(continuum);
 
   // Convert time-steps to simulation time
   constexpr auto NT {static_cast<std::int64_t>(unit_converter.toLbm(simulation_time))};
+  constexpr auto NT_SAVE {static_cast<std::int64_t>(unit_converter.toLbm(save_time_step))};
   for (std::int64_t i = 0; i < NT; i += 2) {
     // Loop performs two combined iterations at once
 
     // TODO(tobit): Currently saving every 100th step
-    bool const is_save {i % (NT/100)};
+    bool const is_save {(i % NT_SAVE) == 0};
 
     // collision_operator.collideAndStream<lbt::Timestep::Even>(is_save);
+    // Enforce boundary condition on continuum
+
     // collision_operator.collideAndStream<lbt::Timestep::Odd>(is_save);
+    // Enforce boundary condition on continuum
 
     if (is_save) {
-      // Enforce boundary condition on continuum
       auto const simulation_time {unit_converter.toPhysical<lbt::unit::Time>(i)};
+      // Convert units from LBM units
       continuum->save(static_cast<double>(simulation_time.get()));
     }
   }
