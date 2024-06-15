@@ -1,10 +1,10 @@
 cmake_minimum_required(VERSION 3.1)
 project(lbt)
 
-if (CMAKE_COMPILER_IS_GNUCC)
+if(CMAKE_COMPILER_IS_GNUCC)
   option(ENABLE_COVERAGE "Enable coverage reporting for GCC/Clang" False)
 
-  if (ENABLE_COVERAGE)
+  if(ENABLE_COVERAGE)
     message(STATUS "Building with coverage reporting for GCC/Clang.")
     add_compile_options(--coverage -O0)
     link_libraries(--coverage)
@@ -32,7 +32,7 @@ if(VTK_VERSION VERSION_LESS "8.90.0")
 endif()
 
 find_package(nlohmann_json REQUIRED)
-if (NOT nlohmann_json_FOUND)
+if(NOT nlohmann_json_FOUND)
   message(FATAL_ERROR "nlohmann-json library not found!")
 else()
   message(STATUS "nlohmann-json version: " ${nlohmann_json_VERSION})
@@ -40,7 +40,7 @@ endif()
 
 find_package(OpenMP)
 if(OpenMP_CXX_FOUND)
-  message(STATUS "OpenMP version " ${OpenMP_VERSION} " found!")
+  message(STATUS "OpenMP version " ${OpenMP_CXX_VERSION} " found!")
 else()
   message(WARNING "OpenMP not found: Multi-threading disabled!")
 endif()
@@ -77,7 +77,7 @@ target_link_libraries(lbt ${LBT_LIBRARIES})
 enable_testing()
 
 include(GoogleTest)
-if (NOT GTest_FOUND)
+if(NOT GTest_FOUND)
   set(LBT_TEST_LIBRARIES ${LBT_LIBRARIES} gtest pthread)
 
   add_library(lbt_test_obj OBJECT
