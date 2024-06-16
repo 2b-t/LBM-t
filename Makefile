@@ -5,13 +5,14 @@
 COMPILER = GCC
 
 # Define sub-directories to be included in compilation
-SRCDIR   = .
-BUILDDIR = ../build
-OBJDIR   = $(BUILDDIR)/obj
-BINDIR   = $(BUILDDIR)/bin
+INCLUDEDIR = ./include
+SRCDIR     = ./src
+BUILDDIR   = ./build
+OBJDIR     = $(BUILDDIR)/obj
+BINDIR     = $(BUILDDIR)/bin
 
-SOURCES  = $(SRCDIR)/simple_main.cpp $(wildcard $(SRCDIR)/*/*.cpp)
-INCLUDES = $(wildcard $(SRCDIR)/*/*.hpp) $(wildcard $(SRCDIR)/*/*/*.hpp)
+SOURCES  = $(SRCDIR)/simple_main.cpp $(wildcard $(SRCDIR)/**/*.cpp)
+INCLUDES = $(shell find $(INCLUDEDIR) -name *.hpp)
 OBJECTS  = $(SOURCES:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o)
 PROGRAM	 = main.$(COMPILER)
 
@@ -20,6 +21,7 @@ WARNINGS  = -Wall -pedantic -Wextra -Weffc++ -Woverloaded-virtual -Wfloat-equal 
 CXXFLAGS += -std=c++17 -O3 -flto -fwhole-program -funroll-all-loops -finline-functions -mavx2 -march=native -fno-exceptions -DNDEBUG
 CXXFLAGS += -funsafe-math-optimizations -fassociative-math -freciprocal-math -obey-inline -fstrict-aliasing -fearly-inlining
 CXXFLAGS += -DLBT_FORCE_NO_VTK
+CXXFLAGS += -I$(INCLUDEDIR)
 LDFLAGS  += -O3 -flto
 
 # Compiler settings for specific compiler
@@ -90,3 +92,4 @@ info:
 	@echo $(CXXFLAGS)
 	@echo "Linker flags: "
 	@echo $(LDFLAGS)
+

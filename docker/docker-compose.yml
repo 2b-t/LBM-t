@@ -13,3 +13,4 @@ services:
       - ../test:/code/lbt/test
       - ../examples:/code/lbt/examples
       - ../CMakeLists.txt:/code/lbt/CMakeLists.txt
+      - ../Makefile:/code/lbt/Makefile
