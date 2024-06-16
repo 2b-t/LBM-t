@@ -25,6 +25,7 @@
   #include "lbt/common/output_utilities.hpp"
   #include "lbt/common/vtk_utilities.hpp"
   #include "lbt/continuums/continuum_base.hpp"
+  #include "lbt/units/units.hpp"
 
 
   namespace lbt {
@@ -112,14 +113,14 @@
           return *this;
         }
 
-        void setP(std::int32_t const x, std::int32_t const y, std::int32_t const z, T const value) noexcept override;
-        void setU(std::int32_t const x, std::int32_t const y, std::int32_t const z, T const value) noexcept override;
-        void setV(std::int32_t const x, std::int32_t const y, std::int32_t const z, T const value) noexcept override;
-        void setW(std::int32_t const x, std::int32_t const y, std::int32_t const z, T const value) noexcept override;
-        T getP(std::int32_t const x, std::int32_t const y, std::int32_t const z) const noexcept override;
-        T getU(std::int32_t const x, std::int32_t const y, std::int32_t const z) const noexcept override;
-        T getV(std::int32_t const x, std::int32_t const y, std::int32_t const z) const noexcept override;
-        T getW(std::int32_t const x, std::int32_t const y, std::int32_t const z) const noexcept override;
+        void setP(std::int32_t const x, std::int32_t const y, std::int32_t const z, lbt::unit::Pressure const value) noexcept override;
+        void setU(std::int32_t const x, std::int32_t const y, std::int32_t const z, lbt::unit::Velocity const value) noexcept override;
+        void setV(std::int32_t const x, std::int32_t const y, std::int32_t const z, lbt::unit::Velocity const value) noexcept override;
+        void setW(std::int32_t const x, std::int32_t const y, std::int32_t const z, lbt::unit::Velocity const value) noexcept override;
+        lbt::unit::Pressure getP(std::int32_t const x, std::int32_t const y, std::int32_t const z) const noexcept override;
+        lbt::unit::Velocity getU(std::int32_t const x, std::int32_t const y, std::int32_t const z) const noexcept override;
+        lbt::unit::Velocity getV(std::int32_t const x, std::int32_t const y, std::int32_t const z) const noexcept override;
+        lbt::unit::Velocity getW(std::int32_t const x, std::int32_t const y, std::int32_t const z) const noexcept override;
         void save(double const timestamp) const noexcept override;
 
         /**\fn        saveToVtk
@@ -180,47 +181,47 @@
     };
 
     template <typename T>
-    void VtkContinuum<T>::setP(std::int32_t const x, std::int32_t const y, std::int32_t const z, T const value) noexcept {
-      setImageDataComponent_(p, x, y, z, value);
+    void VtkContinuum<T>::setP(std::int32_t const x, std::int32_t const y, std::int32_t const z, lbt::unit::Pressure const value) noexcept {
+      setImageDataComponent_(p, x, y, z, value.get());
       return;
     }
 
     template <typename T>
-    void VtkContinuum<T>::setU(std::int32_t const x, std::int32_t const y, std::int32_t const z, T const value) noexcept {
-      setImageDataComponent_(u, x, y, z, value);
+    void VtkContinuum<T>::setU(std::int32_t const x, std::int32_t const y, std::int32_t const z, lbt::unit::Velocity const value) noexcept {
+      setImageDataComponent_(u, x, y, z, value.get());
       return;
     }
 
     template <typename T>
-    void VtkContinuum<T>::setV(std::int32_t const x, std::int32_t const y, std::int32_t const z, T const value) noexcept {
-      setImageDataComponent_(v, x, y, z, value);
+    void VtkContinuum<T>::setV(std::int32_t const x, std::int32_t const y, std::int32_t const z, lbt::unit::Velocity const value) noexcept {
+      setImageDataComponent_(v, x, y, z, value.get());
       return;
     }
 
     template <typename T>
-    void VtkContinuum<T>::setW(std::int32_t const x, std::int32_t const y, std::int32_t const z, T const value) noexcept {
-      setImageDataComponent_(w, x, y, z, value);
+    void VtkContinuum<T>::setW(std::int32_t const x, std::int32_t const y, std::int32_t const z, lbt::unit::Velocity const value) noexcept {
+      setImageDataComponent_(w, x, y, z, value.get());
       return;
     }
 
     template <typename T>
-    T VtkContinuum<T>::getP(std::int32_t const x, std::int32_t const y, std::int32_t const z) const noexcept {
-      return getImageDataComponent_(p, x, y, z);
+    lbt::unit::Pressure VtkContinuum<T>::getP(std::int32_t const x, std::int32_t const y, std::int32_t const z) const noexcept {
+      return lbt::unit::Pressure{getImageDataComponent_(p, x, y, z)};
     }
 
     template <typename T>
-    T VtkContinuum<T>::getU(std::int32_t const x, std::int32_t const y, std::int32_t const z) const noexcept {
-      return getImageDataComponent_(u, x, y, z);
+    lbt::unit::Velocity VtkContinuum<T>::getU(std::int32_t const x, std::int32_t const y, std::int32_t const z) const noexcept {
+      return lbt::unit::Velocity{getImageDataComponent_(u, x, y, z)};
     }
 
     template <typename T>
-    T VtkContinuum<T>::getV(std::int32_t const x, std::int32_t const y, std::int32_t const z) const noexcept {
-      return getImageDataComponent_(v, x, y, z);
+    lbt::unit::Velocity VtkContinuum<T>::getV(std::int32_t const x, std::int32_t const y, std::int32_t const z) const noexcept {
+      return lbt::unit::Velocity{getImageDataComponent_(v, x, y, z)};
     }
 
     template <typename T>
-    T VtkContinuum<T>::getW(std::int32_t const x, std::int32_t const y, std::int32_t const z) const noexcept {
-      return getImageDataComponent_(w, x, y, z);
+    lbt::unit::Velocity VtkContinuum<T>::getW(std::int32_t const x, std::int32_t const y, std::int32_t const z) const noexcept {
+      return lbt::unit::Velocity{getImageDataComponent_(w, x, y, z)};
     }
 
     template <typename T>

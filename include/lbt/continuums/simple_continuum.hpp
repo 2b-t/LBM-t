@@ -22,6 +22,7 @@
 #include "lbt/common/output_utilities.hpp"
 #include "lbt/common/type_definitions.hpp"
 #include "lbt/continuums/continuum_base.hpp"
+#include "lbt/units/units.hpp"
 
 
 namespace lbt {
@@ -54,14 +55,14 @@ namespace lbt {
       SimpleContinuum(SimpleContinuum&&) = default;
       SimpleContinuum& operator = (SimpleContinuum&&) = default;
 
-      void setP(std::int32_t const x, std::int32_t const y, std::int32_t const z, T const value) noexcept override;
-      void setU(std::int32_t const x, std::int32_t const y, std::int32_t const z, T const value) noexcept override;
-      void setV(std::int32_t const x, std::int32_t const y, std::int32_t const z, T const value) noexcept override;
-      void setW(std::int32_t const x, std::int32_t const y, std::int32_t const z, T const value) noexcept override;
-      T getP(std::int32_t const x, std::int32_t const y, std::int32_t const z) const noexcept override;
-      T getU(std::int32_t const x, std::int32_t const y, std::int32_t const z) const noexcept override;
-      T getV(std::int32_t const x, std::int32_t const y, std::int32_t const z) const noexcept override;
-      T getW(std::int32_t const x, std::int32_t const y, std::int32_t const z) const noexcept override;
+      void setP(std::int32_t const x, std::int32_t const y, std::int32_t const z, lbt::unit::Pressure const value) noexcept override;
+      void setU(std::int32_t const x, std::int32_t const y, std::int32_t const z, lbt::unit::Velocity const value) noexcept override;
+      void setV(std::int32_t const x, std::int32_t const y, std::int32_t const z, lbt::unit::Velocity const value) noexcept override;
+      void setW(std::int32_t const x, std::int32_t const y, std::int32_t const z, lbt::unit::Velocity const value) noexcept override;
+      lbt::unit::Pressure getP(std::int32_t const x, std::int32_t const y, std::int32_t const z) const noexcept override;
+      lbt::unit::Velocity getU(std::int32_t const x, std::int32_t const y, std::int32_t const z) const noexcept override;
+      lbt::unit::Velocity getV(std::int32_t const x, std::int32_t const y, std::int32_t const z) const noexcept override;
+      lbt::unit::Velocity getW(std::int32_t const x, std::int32_t const y, std::int32_t const z) const noexcept override;
       void save(double const timestamp) const noexcept override;
 
       /**\fn        operator()
@@ -152,47 +153,47 @@ namespace lbt {
   };
 
   template <typename T>
-  void SimpleContinuum<T>::setP(std::int32_t const x, std::int32_t const y, std::int32_t const z, T const value) noexcept {
-    this->operator()(x,y,z,0) = value;
+  void SimpleContinuum<T>::setP(std::int32_t const x, std::int32_t const y, std::int32_t const z, lbt::unit::Pressure const value) noexcept {
+    this->operator()(x,y,z,0) = value.get();
     return;
   }
 
   template <typename T>
-  void SimpleContinuum<T>::setU(std::int32_t const x, std::int32_t const y, std::int32_t const z, T const value) noexcept {
-    this->operator()(x,y,z,1) = value;
+  void SimpleContinuum<T>::setU(std::int32_t const x, std::int32_t const y, std::int32_t const z, lbt::unit::Velocity const value) noexcept {
+    this->operator()(x,y,z,1) = value.get();
     return;
   }
 
   template <typename T>
-  void SimpleContinuum<T>::setV(std::int32_t const x, std::int32_t const y, std::int32_t const z, T const value) noexcept {
-    this->operator()(x,y,z,2) = value;
+  void SimpleContinuum<T>::setV(std::int32_t const x, std::int32_t const y, std::int32_t const z, lbt::unit::Velocity const value) noexcept {
+    this->operator()(x,y,z,2) = value.get();
     return;
   }
 
   template <typename T>
-  void SimpleContinuum<T>::setW(std::int32_t const x, std::int32_t const y, std::int32_t const z, T const value) noexcept {
-    this->operator()(x,y,z,3) = value;
+  void SimpleContinuum<T>::setW(std::int32_t const x, std::int32_t const y, std::int32_t const z, lbt::unit::Velocity const value) noexcept {
+    this->operator()(x,y,z,3) = value.get();
     return;
   }
 
   template <typename T>
-  T SimpleContinuum<T>::getP(std::int32_t const x, std::int32_t const y, std::int32_t const z) const noexcept {
-    return this->operator()(x,y,z,0);
+  lbt::unit::Pressure SimpleContinuum<T>::getP(std::int32_t const x, std::int32_t const y, std::int32_t const z) const noexcept {
+    return lbt::unit::Pressure{this->operator()(x,y,z,0)};
   }
 
   template <typename T>
-  T SimpleContinuum<T>::getU(std::int32_t const x, std::int32_t const y, std::int32_t const z) const noexcept {
-    return this->operator()(x,y,z,1);
+  lbt::unit::Velocity SimpleContinuum<T>::getU(std::int32_t const x, std::int32_t const y, std::int32_t const z) const noexcept {
+    return lbt::unit::Velocity{this->operator()(x,y,z,1)};
   }
 
   template <typename T>
-  T SimpleContinuum<T>::getV(std::int32_t const x, std::int32_t const y, std::int32_t const z) const noexcept {
-    return this->operator()(x,y,z,2);
+  lbt::unit::Velocity SimpleContinuum<T>::getV(std::int32_t const x, std::int32_t const y, std::int32_t const z) const noexcept {
+    return lbt::unit::Velocity{this->operator()(x,y,z,2)};
   }
 
   template <typename T>
-  T SimpleContinuum<T>::getW(std::int32_t const x, std::int32_t const y, std::int32_t const z) const noexcept {
-    return this->operator()(x,y,z,3);
+  lbt::unit::Velocity SimpleContinuum<T>::getW(std::int32_t const x, std::int32_t const y, std::int32_t const z) const noexcept {
+    return lbt::unit::Velocity{this->operator()(x,y,z,3)};
   }
 
   template <typename T>
@@ -260,7 +261,7 @@ namespace lbt {
 
   template <typename T>
   inline std::int64_t SimpleContinuum<T>::spatialToLinear_(std::int32_t const x, std::int32_t const y, std::int32_t const z,
-                                                     std::int32_t const m) const noexcept {
+                                                           std::int32_t const m) const noexcept {
     return ((static_cast<std::int64_t>(z)*ContinuumBase<T>::NY + y)*ContinuumBase<T>::NX + x)*number_of_values + m;
   }
 
