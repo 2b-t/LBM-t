@@ -2,15 +2,14 @@ version: "3.9"
 services:
   lbt_docker:
     build:
-      context: .
-      dockerfile: Dockerfile
-    #stdin_open: true # Docker run -i
-    tty: true # Docker run -t
-    volumes: # Mount relevant folders into container
-      - ../.vscode:/code/lbt/.vscode # Necessary for using VS Code tasks also inside container
+      context: ..
+      dockerfile: docker/Dockerfile
+    tty: true
+    volumes:
+      - ../.vscode:/code/lbt/.vscode
+      - ../examples:/code/lbt/examples
       - ../include:/code/lbt/include
       - ../src:/code/lbt/src
       - ../test:/code/lbt/test
-      - ../examples:/code/lbt/examples
       - ../CMakeLists.txt:/code/lbt/CMakeLists.txt
       - ../Makefile:/code/lbt/Makefile
