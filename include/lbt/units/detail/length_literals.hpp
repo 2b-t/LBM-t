@@ -9,6 +9,7 @@
 #pragma once
 
 #include "lbt/units/detail/length.hpp"
+#include "lbt/units/detail/prefixes.hpp"
 
 
 namespace lbt {
@@ -21,7 +22,7 @@ namespace lbt {
      * \return    A length in the base unit meters
     */
     constexpr lbt::unit::Length operator "" _km(long double const k) noexcept {
-      return k*lbt::unit::Length{1.0e3};
+      return k*lbt::unit::Length{lbt::unit::prefix::kilo};
     }
     /**\fn        operator "" _m
      * \brief     User-defined literal for a length given in meters
@@ -30,7 +31,7 @@ namespace lbt {
      * \return    A length in the base unit meters
     */
     constexpr lbt::unit::Length operator "" _m(long double const m) noexcept {
-      return m*lbt::unit::Length{1.0};
+      return m*lbt::unit::Length{lbt::unit::prefix::base};
     }
     /**\fn        operator "" _dm
      * \brief     User-defined literal for a length given in decimeters
@@ -39,7 +40,7 @@ namespace lbt {
      * \return    A length in the base unit meters
     */
     constexpr lbt::unit::Length operator "" _dm(long double const d) noexcept {
-      return d*lbt::unit::Length{1.0e-1};
+      return d*lbt::unit::Length{lbt::unit::prefix::deci};
     }
     /**\fn        operator "" _cm
      * \brief     User-defined literal for a length given in centimeters
@@ -48,7 +49,7 @@ namespace lbt {
      * \return    A length in the base unit meters
     */
     constexpr lbt::unit::Length operator "" _cm(long double const c) noexcept {
-      return c*lbt::unit::Length{1.0e-2};
+      return c*lbt::unit::Length{lbt::unit::prefix::centi};
     }
     /**\fn        operator "" _mm
      * \brief     User-defined literal for a length given in millimeters
@@ -57,7 +58,7 @@ namespace lbt {
      * \return    A length in the base unit meters
     */
     constexpr lbt::unit::Length operator "" _mm(long double const m) noexcept {
-      return m*lbt::unit::Length{1.0e-3};
+      return m*lbt::unit::Length{lbt::unit::prefix::milli};
     }
     /**\fn        operator "" _um
      * \brief     User-defined literal for a length given in micrometers
@@ -66,7 +67,7 @@ namespace lbt {
      * \return    A length in the base unit meters
     */
     constexpr lbt::unit::Length operator "" _um(long double const u) noexcept {
-      return u*lbt::unit::Length{1.0e-6};
+      return u*lbt::unit::Length{lbt::unit::prefix::micro};
     }
     /**\fn        operator "" _pm
      * \brief     User-defined literal for a length given in picometers
@@ -75,7 +76,7 @@ namespace lbt {
      * \return    A length in the base unit meters
     */
     constexpr lbt::unit::Length operator "" _pm(long double const u) noexcept {
-      return u*lbt::unit::Length{1.0e-12};
+      return u*lbt::unit::Length{lbt::unit::prefix::pico};
     }
 
   }

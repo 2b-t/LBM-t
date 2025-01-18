@@ -8,6 +8,7 @@
 #define LBT__UNITS__PRESSURE_LITERALS
 #pragma once
 
+#include "lbt/units/detail/prefixes.hpp"
 #include "lbt/units/detail/pressure.hpp"
 
 
@@ -21,7 +22,7 @@ namespace lbt {
      * \return    A pressure in the base unit Pascal
     */
     constexpr lbt::unit::Pressure operator "" _Pa(long double const p) noexcept {
-      return p*lbt::unit::Pressure{1.0};
+      return p*lbt::unit::Pressure{lbt::unit::prefix::base};
     }
     /**\fn        operator "" _GPa
      * \brief     User-defined literal for a pressure given in Giga-Pascal
@@ -30,7 +31,7 @@ namespace lbt {
      * \return    A pressure in the base unit Pascal
     */
     constexpr lbt::unit::Pressure operator "" _GPa(long double const g) noexcept {
-      return g*lbt::unit::Pressure{1.0e+9};
+      return g*lbt::unit::Pressure{lbt::unit::prefix::giga};
     }
     /**\fn        operator "" _mPa
      * \brief     User-defined literal for a pressure given in milli-Pascal
@@ -39,7 +40,7 @@ namespace lbt {
      * \return    A pressure in the base unit Pascal
     */
     constexpr lbt::unit::Pressure operator "" _mPa(long double const m) noexcept {
-      return m*lbt::unit::Pressure{1.0e-3};
+      return m*lbt::unit::Pressure{lbt::unit::prefix::milli};
     }
     /**\fn        operator "" _uPa
      * \brief     User-defined literal for a pressure given in micro-Pascal
@@ -48,7 +49,7 @@ namespace lbt {
      * \return    A pressure in the base unit Pascal
     */
     constexpr lbt::unit::Pressure operator "" _uPa(long double const m) noexcept {
-      return m*lbt::unit::Pressure{1.0e-6};
+      return m*lbt::unit::Pressure{lbt::unit::prefix::micro};
     }
     /**\fn        operator "" _hPa
      * \brief     User-defined literal for a pressure given in hecto-Pascal
@@ -57,7 +58,7 @@ namespace lbt {
      * \return    A pressure in the base unit Pascal
     */
     constexpr lbt::unit::Pressure operator "" _hPa(long double const h) noexcept {
-      return h*lbt::unit::Pressure{100.0};
+      return h*lbt::unit::Pressure{lbt::unit::prefix::hecto};
     }
     /**\fn        operator "" _bar
      * \brief     User-defined literal for a pressure given in bar
@@ -66,7 +67,7 @@ namespace lbt {
      * \return    A pressure in the base unit Pascal
     */
     constexpr lbt::unit::Pressure operator "" _bar(long double const b) noexcept {
-      return b*lbt::unit::Pressure{1.0e+5};
+      return b*lbt::unit::Pressure{lbt::unit::prefix::hecto*lbt::unit::prefix::kilo};
     }
     /**\fn        operator "" _atm
      * \brief     User-defined literal for a pressure given in atmospheres

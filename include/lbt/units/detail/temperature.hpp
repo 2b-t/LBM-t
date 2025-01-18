@@ -24,7 +24,7 @@ namespace lbt {
          * 
          * \param[in] value   The value to be stored inside the class in Kelvin
         */
-        explicit constexpr Temperature(long double const value = 273.15) noexcept
+        explicit constexpr Temperature(long double const value = 273.15l) noexcept
           : UnitBase{value} {
           return;
         }

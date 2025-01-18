@@ -10,6 +10,7 @@
 
 #include "lbt/units/detail/dynamic_viscosity.hpp"
 #include "lbt/units/detail/operators.hpp"
+#include "lbt/units/detail/prefixes.hpp"
 #include "lbt/units/detail/pressure.hpp"
 #include "lbt/units/detail/pressure_literals.hpp"
 #include "lbt/units/detail/time.hpp"
@@ -26,7 +27,7 @@ namespace lbt {
      * \return    A dynamic viscosity in the base unit Pascal seconds
     */
     constexpr lbt::unit::DynamicViscosity operator "" _Pas(long double const c) noexcept {
-      return c*lbt::unit::DynamicViscosity{1.0};
+      return c*lbt::unit::DynamicViscosity{lbt::unit::prefix::base};
     }
     /**\fn        operator "" _mPas
      * \brief     User-defined literal for a dynamic viscosity given in milli Pascal seconds
@@ -53,7 +54,7 @@ namespace lbt {
      * \return    A dynamic viscosity in the base unit Pascal seconds
     */
     constexpr lbt::unit::DynamicViscosity operator "" _P(long double const c) noexcept {
-      return c*lbt::unit::DynamicViscosity{1.0e-1};
+      return c*lbt::unit::DynamicViscosity{lbt::unit::prefix::deci};
     }
     /**\fn        operator "" _cP
      * \brief     User-defined literal for a dynamic viscosity given in Centipoise

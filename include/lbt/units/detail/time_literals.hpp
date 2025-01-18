@@ -8,6 +8,7 @@
 #define LBT__UNITS__TIME_LITERALS
 #pragma once
 
+#include "lbt/units/detail/prefixes.hpp"
 #include "lbt/units/detail/time.hpp"
 
 
@@ -21,7 +22,7 @@ namespace lbt {
      * \return    A time in the base unit seconds
     */
     constexpr lbt::unit::Time operator "" _d(long double const d) noexcept {
-      return d*lbt::unit::Time{86400.0};
+      return d*lbt::unit::Time{60.0L*60.0L*24.0L};
     }
     /**\fn        operator "" _h
      * \brief     User-defined literal for a time given in hours
@@ -30,7 +31,7 @@ namespace lbt {
      * \return    A time in the base unit seconds
     */
     constexpr lbt::unit::Time operator "" _h(long double const h) noexcept {
-      return h*lbt::unit::Time{3600.0};
+      return h*lbt::unit::Time{60.0L*60.0L};
     }
     /**\fn        operator "" _min
      * \brief     User-defined literal for a time given in minutes
@@ -39,7 +40,7 @@ namespace lbt {
      * \return    A time in the base unit seconds
     */
     constexpr lbt::unit::Time operator "" _min(long double const m) noexcept {
-      return m*lbt::unit::Time{60.0};
+      return m*lbt::unit::Time{60.0L};
     }
     /**\fn        operator "" _s
      * \brief     User-defined literal for a time given in seconds
@@ -48,7 +49,7 @@ namespace lbt {
      * \return    A time in the base unit seconds
     */
     constexpr lbt::unit::Time operator "" _s(long double const s) noexcept {
-      return s*lbt::unit::Time{1.0};
+      return s*lbt::unit::Time{lbt::unit::prefix::base};
     }
     /**\fn        operator "" _ms
      * \brief     User-defined literal for a time given in milliseconds
@@ -57,7 +58,7 @@ namespace lbt {
      * \return    A time in the base unit seconds
     */
     constexpr lbt::unit::Time operator "" _ms(long double const m) noexcept {
-      return m*lbt::unit::Time{1.0e-3};
+      return m*lbt::unit::Time{lbt::unit::prefix::milli};
     }
     /**\fn        operator "" _us
      * \brief     User-defined literal for a time given in microseconds
@@ -66,7 +67,7 @@ namespace lbt {
      * \return    A time in the base unit seconds
     */
     constexpr lbt::unit::Time operator "" _us(long double const u) noexcept {
-      return u*lbt::unit::Time{1.0e-6};
+      return u*lbt::unit::Time{lbt::unit::prefix::micro};
     }
 
   }

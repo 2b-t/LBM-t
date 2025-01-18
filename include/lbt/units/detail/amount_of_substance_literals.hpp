@@ -9,6 +9,7 @@
 #pragma once
 
 #include "lbt/units/detail/amount_of_substance.hpp"
+#include "lbt/units/detail/prefixes.hpp"
 
 
 namespace lbt {
@@ -21,7 +22,7 @@ namespace lbt {
      * \return    An amount of substance in the base unit mole
     */
     constexpr lbt::unit::AmountOfSubstance operator "" _mol(long double const m) noexcept {
-      return m*lbt::unit::AmountOfSubstance{1.0};
+      return m*lbt::unit::AmountOfSubstance{lbt::unit::prefix::base};
     }
     /**\fn        operator "" _kg
      * \brief     User-defined literal for an amount of substance given in kilomole
@@ -30,7 +31,7 @@ namespace lbt {
      * \return    An amount of substance in the base unit mole
     */
     constexpr lbt::unit::AmountOfSubstance operator "" _kmol(long double const k) noexcept {
-      return k*lbt::unit::AmountOfSubstance{1000.0};
+      return k*lbt::unit::AmountOfSubstance{lbt::unit::prefix::kilo};
     }
 
   }

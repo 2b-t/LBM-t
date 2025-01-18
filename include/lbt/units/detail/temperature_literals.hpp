@@ -30,7 +30,7 @@ namespace lbt {
      * \return    A temperature in the base unit Kelvin
     */
     constexpr lbt::unit::Temperature operator "" _deg(long double const t) noexcept {
-      return lbt::unit::Temperature{t + 273.15};
+      return lbt::unit::Temperature{t + 273.15l};
     }
 
   }

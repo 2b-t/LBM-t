@@ -14,6 +14,7 @@
 #include "lbt/units/detail/mass_literals.hpp"
 #include "lbt/units/detail/molar_mass.hpp"
 #include "lbt/units/detail/operators.hpp"
+#include "lbt/units/detail/prefixes.hpp"
 
 
 namespace lbt {
@@ -35,7 +36,7 @@ namespace lbt {
      * \return    A molar mass in the base unit kilogram per mole
     */
     constexpr lbt::unit::MolarMass operator "" _kgpmol(long double const k) noexcept {
-      return k*lbt::unit::MolarMass{1.0};
+      return k*lbt::unit::MolarMass{lbt::unit::prefix::base};
     }
 
   }

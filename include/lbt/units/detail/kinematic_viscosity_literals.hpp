@@ -12,6 +12,7 @@
 #include "lbt/units/detail/length.hpp"
 #include "lbt/units/detail/length_literals.hpp"
 #include "lbt/units/detail/operators.hpp"
+#include "lbt/units/detail/prefixes.hpp"
 #include "lbt/units/detail/time.hpp"
 #include "lbt/units/detail/time_literals.hpp"
 
@@ -35,7 +36,7 @@ namespace lbt {
      * \return    A kinematic viscosity in the base unit meters squared per second
     */
     constexpr lbt::unit::KinematicViscosity operator "" _St(long double const s) noexcept {
-      return s*lbt::unit::KinematicViscosity{1.0e-4};
+      return s*lbt::unit::KinematicViscosity{lbt::unit::prefix::deci*lbt::unit::prefix::milli};
     }
     /**\fn        operator "" _cSt
      * \brief     User-defined literal for a kinematic viscosity given in Centistokes
@@ -44,7 +45,7 @@ namespace lbt {
      * \return    A kinematic viscosity in the base unit meters squared per second
     */
     constexpr lbt::unit::KinematicViscosity operator "" _cSt(long double const c) noexcept {
-      return c*lbt::unit::KinematicViscosity{1.0e-6};
+      return c*lbt::unit::KinematicViscosity{lbt::unit::prefix::micro};
     }
 
   }

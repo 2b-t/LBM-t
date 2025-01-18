@@ -24,7 +24,7 @@ namespace lbt {
          * 
          * \param[in] value   The value to be stored inside the class in the base unit meters per seconds
         */
-        explicit constexpr Velocity(long double const value = 0.0) noexcept
+        explicit constexpr Velocity(long double const value = 0.0l) noexcept
           : UnitBase{value} {
           return;
         }

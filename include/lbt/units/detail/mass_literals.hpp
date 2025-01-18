@@ -9,6 +9,7 @@
 #pragma once
 
 #include "lbt/units/detail/mass.hpp"
+#include "lbt/units/detail/prefixes.hpp"
 
 
 namespace lbt {
@@ -21,7 +22,7 @@ namespace lbt {
      * \return    A mass in the base unit kilograms
     */
     constexpr lbt::unit::Mass operator "" _t(long double const t) noexcept {
-      return t*lbt::unit::Mass{1000.0};
+      return t*lbt::unit::Mass{lbt::unit::prefix::kilo};
     }
     /**\fn        operator "" _kg
      * \brief     User-defined literal for a mass given in kilograms
@@ -30,7 +31,7 @@ namespace lbt {
      * \return    A mass in the base unit kilograms
     */
     constexpr lbt::unit::Mass operator "" _kg(long double const k) noexcept {
-      return k*lbt::unit::Mass{1.0};
+      return k*lbt::unit::Mass{lbt::unit::prefix::base};
     }
     /**\fn        operator "" _g
      * \brief     User-defined literal for a mass given in grams
@@ -39,7 +40,7 @@ namespace lbt {
      * \return    A mass in the base unit kilograms
     */
     constexpr lbt::unit::Mass operator "" _g(long double const g) noexcept {
-      return g*lbt::unit::Mass{1.0e-3};
+      return g*lbt::unit::Mass{lbt::unit::prefix::milli};
     }
 
   }
